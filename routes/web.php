@@ -25,6 +25,7 @@ Route::post('/', [AuhtController::class, 'login']);
 Route::post('/logout', [AuhtController::class, 'logout'])->name('logout');
 Route::get('/register', [AuhtController::class, 'showReq'])->name('register');
 Route::post('/register', [AuhtController::class, 'register']);
+Route::post('/verifyOtp', [AuhtController::class, 'verifyOtp'])->name('verify.otp');
 
 Route::get('/menu', [ProdukController::class, 'index'])->name('manu');
 Route::get('/read', [ProdukController::class, 'read'])->name('read');
