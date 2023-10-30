@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css?family=Inter:500,600|Newsreader:400");
+
+.sidebar {
+  text-decoration: none;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #9d7942b0;
+    padding-top: 20px;
+  }
+
+  .sidebar-content h2{
+    padding: 20px;
+    color: #68440F;
+    font-weight: bold;
+  }
+
+  .sidebar-content a{
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+  }
+
+  .sidebar-content a.active{
+    /* font-weight: bold; */
+    text-decoration: none;
+    color: white;
+    background-color: #9D7942;
+    padding : 10px;
+    /* display: inline-block; */
+    border-radius: 10px;
+  }
+
+  #calendar-container {
+    color: #fff;
+    float: right;
+    background: #9D7942;
+    border-radius: 10px;
+    /* margin-left: 20px; */
+  }
+  
+
+  .logout-button{
+    position: absolute;
+    top:530px;
+  } 
+
+  .page-content {
+    margin-left: 250px;
+    padding: 15px;
+  }
+
+  .sidebar-toggle {
+    display: none;
+  }
+
+  .btn{
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+
+  }

@@ -1,0 +1,11 @@
+h1{
+    color: #ffff;
+}
+
+body{
+    background-color: #191919;
+    background-image: url('/storage/bg.jpg');
+    background-position: center center; 
+    background-attachment: fixed;
+    background-size: cover; 
+}

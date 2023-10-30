@@ -1,0 +1,330 @@
+@import url("https://fonts.googleapis.com/css?family=Inter:500,600|Newsreader:400");
+
+
+/* Responsive */
+
+/* Template */
+@media (max-width: 768px) {
+    /* Aturan untuk layar dengan lebar maksimal 768px */
+    .navbar-brand {
+        font-size: 24px; /* Mengubah ukuran teks logo pada layar kecil */
+    }
+}
+
+
+@media (max-width: 576px) {
+    /* Aturan untuk layar dengan lebar maksimal 576px */
+}
+
+
+/* Cart */
+/* Untuk layar yang lebih kecil, mengatur lebar gambar menjadi 100% */
+@media (max-width: 576px) {
+    .card img {
+        width: 100%;
+    }
+}
+
+/* Mengatur lebar tombol Checkout agar penuh pada layar kecil */
+@media (max-width: 576px) {
+    .checkout-button {
+        width: 100%;
+    }
+}
+
+/* Mengatur padding untuk judul "Cart" pada layar kecil */
+@media (max-width: 576px) {
+    .header {
+        padding-top: 2vh;
+    }
+}
+
+/* Mengatur jarak antara elemen-elemen dalam "Order Summary" pada layar kecil */
+@media (max-width: 576px) {
+    .order-summary .col {
+        margin-bottom: 10px;
+    }
+}
+
+/* Mengatur font size untuk judul "Cart" pada layar kecil */
+@media (max-width: 576px) {
+    .header {
+        font-size: 24px;
+    }
+}
+
+/* Mengatur font size untuk nama produk pada layar kecil */
+@media (max-width: 576px) {
+    .col-7 h4 {
+        font-size: 16px;
+    }
+}
+
+/* Mengatur font size untuk harga produk pada layar kecil */
+@media (max-width: 576px) {
+    .col-2 h5 {
+        font-size: 14px;
+    }
+}
+
+/* Mengatur font size untuk nama produk di "Order Summary" pada layar kecil */
+@media (max-width: 576px) {
+    .order-summary .col p {
+        font-size: 14px;
+    }
+}
+
+/* Mengatur font size untuk total harga di "Order Summary" pada layar kecil */
+@media (max-width: 576px) {
+    .order-summary .col h4 {
+        font-size: 18px;
+    }
+}
+
+/* Home */
+/* Atur lebar tombol pencarian dan judul "Categories" pada layar kecil */
+@media (max-width: 576px) {
+    .form-control {
+        width: 70%;
+    }
+    
+    .header h4 {
+        font-size: 20px;
+    }
+}
+/* Atur kategori menjadi responsif pada perangkat dengan lebar maksimum 576px */
+@media (max-width: 576px) {
+    .categories ul {
+        flex-direction: column; /* Mengubah tata letak kategori menjadi satu kolom */
+        gap: 10px; /* Atur jarak antara kategori */
+    }
+
+    .categories button {
+        width: 100%; /* Lebar tombol mengisi penuh kontainer */
+    }
+}
+
+/* Atur kartu produk pada layar kecil */
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-img-top {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Profile */
+/* Menyesuaikan ukuran gambar profil untuk perangkat berukuran kecil */
+@media (max-width: 576px) {
+    .profile img {
+        width: 70%;
+        max-width: 200px; /* Atur lebar maksimum sesuai keinginan Anda */
+        height: auto;
+    }
+}
+/* Menyesuaikan tombol Order dan Logout pada layar kecil */
+@media (max-width: 576px) {
+    .profile button {
+        font-size: 14px; /* Ukuran font yang lebih kecil */
+    }
+}
+
+/* Shopping-cart */
+/* Atur kartu produk menjadi responsif pada perangkat dengan lebar maksimum 576px */
+@media (max-width: 576px) {
+    .shopping-card {
+        margin: 20px; /* Atur margin sesuai keinginan Anda */
+    }
+
+    .card-body2 {
+        padding: 20px; /* Atur padding sesuai keinginan Anda */
+    }
+
+    .card-title2 {
+        text-align: start;
+        font-size: 20px; /* Atur ukuran font sesuai keinginan Anda */
+    }
+
+    .card-content {
+        padding-top: 10px; /* Atur padding atas sesuai keinginan Anda */
+    }
+
+    .card-content h3 {
+        font-size: 16px; /* Atur ukuran font untuk teks "Coffee Size" */
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px; /* Atur margin bawah antara radio buttons */
+    }
+
+    button {
+        width: 100%; /* Lebar tombol mengisi penuh kontainer */
+        padding: 15px; /* Atur padding sesuai keinginan Anda */
+        border-radius: 10px; /* Atur radius sudut sesuai keinginan Anda */
+        font-size: 16px; /* Atur ukuran font sesuai keinginan Anda */
+    }
+}
+
+
+/* Navbar */
+
+/* .nav-item :hover{
+    scale: 1.1;
+} */
+.btn{
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.nav-item a{
+    padding-left: 20px;
+}
+
+.nav-item.active .nav-link{
+    background-color: #7b551c8e;
+    color:white;
+    border-radius: 10px;
+}
+
+/* Menu */
+
+.row .card{
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    margin:1vh;
+    width:15rem;
+    border :none;
+    box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.8);
+}
+
+.row .card .card-img-top{
+    width: 240px;
+    height: 200px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    background-color: #9d794234;
+    
+}
+
+.row .card .card-title{
+    display: flex;
+    justify-content: space-between;
+    background-color: #9d794291;
+    padding : 10px;
+}
+
+.card .card-title a{
+    color :white;
+    background-color: #7B551C;
+    transition: transform 0.3s;
+}
+
+.card .card-title a:hover{
+    scale: 1.2;
+}
+
+.row .card .card-title .card-price{
+    padding-top: 20px;
+    color : white;
+}
+
+/* Navbar Ketika Discroll */
+.navbar {
+    transition: background-color 0.8s ease;
+    /* background-color: #7b551c84; */
+}
+  
+.navbar-scrolled{
+    background-color: #b59a70;
+    transition: background-color 0.3s ease; 
+    /* color:white; */
+}
+
+/* .navbar-scrolled a{
+    color:white;
+} */
+
+/* Profile */
+
+.profile .pict{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+}
+
+.profile button{
+    color: white;
+    width : 110vh;
+    border: none;
+    padding: 2vh;
+    margin: 2vh;
+    /* background-color: #A07C45; */
+    border-radius: 10px;
+}
+
+.profile button span{
+    margin: 10vh;
+}
+
+.profile .row{
+    transition: transform 0.3s;
+}
+
+.profile .row :hover{
+    scale : 1.1;
+}
+
+/* Shopping-Cart */
+.shopping-card{
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+    padding: 20px;
+}
+
+.card-body2{
+    margin-top: 50vh;
+    color: rgb(255, 255, 255);
+    background: #3322075b; 
+}
+
+.card-title2{
+    padding: 20px;
+}
+
+.card-content{
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    background: white;
+}
+
+.card-content label, button{
+    color:white;
+    background: #865711ca;
+    border: none;
+    border-radius: 10px;
+    width : 30vh;
+    padding : 2vh;
+    margin : 5vh;
+}
+
+/* Cart */
+/* .checkout-button :hover{
+    scale : 1.2;
+} */
+
+  
+  
+
+
+
+
+
