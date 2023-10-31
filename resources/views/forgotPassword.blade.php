@@ -54,12 +54,11 @@
                 url: "{{ route('sendOtp')}}", 
                 method: "POST",
                 data: {telepon},                
-                success: function(response) {
-                    console.log(telepon);                    
+                success: function(response) {                    
                     // Tampilkan pesan sukses jika diperlukan
                     Swal.fire({
                         icon: 'success',
-                        title: 'Stok berhasil ditambahkan!',
+                        title: '"Successfully sent OTP."',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -80,20 +79,13 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-                        
+
             $.ajax({
                 url: "{{ url('/changePassword')}}", 
                 method: "POST",
                 data: {otp},
-                success: function(response) {
-                    console.log(otp);
-                    window.location="{{route("resetPassword")}}";                
-                    // Tampilkan pesan sukses jika diperlukan
-                    Swal.fire({
-                        icon: 'success',                        
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                success: function(response) {                    
+                    window.location="{{route("resetPassword")}}";                                    
                 },
                 error: function(xhr, status, error) {
                     console.log(xhr.responseText);                    
