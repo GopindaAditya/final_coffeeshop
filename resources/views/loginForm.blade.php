@@ -41,7 +41,9 @@
                       </div>
                       <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
                       <hr class="my-3">
-                      <p class="teks text-light">Don't have any account?<a href="{{ url('/register') }}" class="link-info">Register Here</a></p>
+                      <p class="teks text-light">Don't have any account?<a href="{{ url('/register') }}" class="link-info">Register Here</a></p><br>
+                      <p class="teks text-light">Forgot Password?<a href="{{ url('/forgotPassword') }}" class="link-info">Click
+                         Here</a></p>
                     </form>
                   </div>
                 </div>

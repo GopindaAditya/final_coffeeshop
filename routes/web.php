@@ -26,6 +26,12 @@ Route::post('/logout', [AuhtController::class, 'logout'])->name('logout');
 Route::get('/register', [AuhtController::class, 'showReq'])->name('register');
 Route::post('/register', [AuhtController::class, 'register']);
 Route::post('/verifyOtp', [AuhtController::class, 'verifyOtp'])->name('verify.otp');
+Route::get('/forgotPassword', [AuhtController::class, 'showForgotPassword'])->name('forgotPassword');
+Route::post('/forgotPassword', [AuhtController::class, 'sendOtp'])->name('sendOtp');
+Route::post('/changePassword', [AuhtController::class, 'forgotPassword'])->name('verify');
+Route::get('/resetPassword',[AuhtController::class, 'showResetPassword'])->name('resetPassword');
+Route::post('/resetPassword',[AuhtController::class, 'resetPassword']);
+
 
 Route::get('/menu', [ProdukController::class, 'index'])->name('manu');
 Route::get('/read', [ProdukController::class, 'read'])->name('read');

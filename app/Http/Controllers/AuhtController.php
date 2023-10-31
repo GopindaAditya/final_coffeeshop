@@ -122,6 +122,89 @@ Terima kasih atas perhatian Anda',
             return redirect()->route('manu');
         }
     }
+
+    function showForgotPassword(){
+        return view('forgotPassword');
+    }
+
+    function sendOtp(Request $request) {
+        $telepon = $request->telepon;            
+        $otp = $this->generateOtp();
+        
+
+        $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.fonnte.com/send',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'target' => $telepon,
+                    'message' => 'Terima kasih telah mendaftar di layanan kami. Untuk menyelesaikan proses pendaftaran, kami memerlukan verifikasi akun Anda.
+
+Berikut adalah kode verifikasi Anda: '.$otp. '
+                    
+Harap masukkan kode ini pada halaman verifikasi akun kami. Jangan berikan kode ini kepada siapapun, karena ini adalah informasi rahasia yang digunakan untuk mengamankan akun Anda.
+                    
+Jika Anda tidak merasa melakukan pendaftaran di layanan kami, mohon abaikan pesan ini.
+                    
+Terima kasih atas perhatian Anda',
+                    'countryCode' => '62',
+                    //optional
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Ph2GJQCYaeAs7yCy8HTW' //change TOKEN to your actual token
+                ),
+            )
+            );
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+
+            Session::put('otp',$otp);
+            Session::put('telepon', $telepon);
+            return response()->json('success send otp', 200);
+    }
+
+    function forgotPassword(Request $request){
+        $userInput = $request->otp;
+        $storeOtp = Session::get('otp');
+
+        if($userInput == $storeOtp){                               
+            Session::forget('otp');            
+            return response()->json('success', 200); // Send JSON response to the client
+        }else{
+            return response()->json(['error' => 'Item not found'], 404);
+        }
+    }
+
+    function showResetPassword(){
+        return view('resetPassword');
+    }
+    function resetPassword(Request $request){
+        $cradential = $request->validate([
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required'   
+        ]);
+
+        $telepon = Session::get('telepon');
+        if($request->password == $request->password_confirmation){
+            $user = User::where('telepon', $telepon)->first();            
+            $user ->password = bcrypt($request->password);
+            $user -> save();
+            Session::forget('telepon');
+            return redirect()->route('login');
+        }else{
+            return redirect()->back()->withErrors($cradential)->withInput();
+        }
+    }
+
     function logout() {
         Auth::logout();
         return redirect()->route('login');
