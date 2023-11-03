@@ -18,7 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_produk');                       
             $table->integer('harga');            
-            $table->integer('jumlah');            
+            $table->integer('jumlah');  
+            $table->enum('size',['small', 'medium', 'large']);          
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');

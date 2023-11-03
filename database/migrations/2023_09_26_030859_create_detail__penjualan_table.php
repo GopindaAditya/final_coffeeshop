@@ -17,7 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_transaksi');     
             $table->unsignedBigInteger('id_menu');                 
             $table->integer('jumlah');
-            $table->integer('harga_penjualan');             
+            $table->integer('harga_penjualan'); 
+            $table->enum('size',['small', 'medium', 'large']);
             $table->timestamps();
 
             $table->foreign('id_transaksi')->references('id')->on('penjualan');

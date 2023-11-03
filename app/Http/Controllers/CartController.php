@@ -37,22 +37,63 @@ class CartController extends Controller
     }
 
 
+    // function addCart(Request $request, $id)
+    // {
+    //     $jumlah = $request->input('jumlah');
+    //     $customer = Auth::user()->id;
+    //     $data = new Cart;
+    //     $data->id_user = $customer;
+    //     $data->id_produk = $id;
+    //     $data->harga = $request->harga;
+    //     if ($jumlah <= $request->stok) {
+    //         $data->jumlah = $jumlah;
+    //         $data->save();
+    //         return view('menu');
+    //     } else {
+    //         return redirect()->back()->withErrors("Stok Kurang")->withInput();
+    //     }
+    // }
+
     function addCart(Request $request, $id)
     {
         $jumlah = $request->input('jumlah');
         $customer = Auth::user()->id;
-        $data = new Cart;
-        $data->id_user = $customer;
-        $data->id_produk = $id;
-        $data->harga = $request->harga;
-        if ($jumlah <= $request->stok) {
-            $data->jumlah = $jumlah;
-            $data->save();
-            return view('menu');
+
+        // Cek apakah produk dengan ukuran large sudah ada dalam keranjang
+        $existingCartItem = Cart::where('id_user', $customer)
+            ->where('id_produk', $id)
+            ->where('harga', $request->harga) // Tambahkan kondisi harga (small, medium, large)
+            ->first();
+
+        if ($existingCartItem) {
+            // Jika produk dengan ukuran large sudah ada, tambahkan jumlahnya
+            $newQuantity = $existingCartItem->jumlah + $jumlah;
+
+            // Cek apakah jumlah baru melebihi stok
+            if ($newQuantity <= $request->stok) {
+                $existingCartItem->jumlah = $newQuantity;
+                $existingCartItem->save();
+            } else {
+                return response()->json(['error' => 'Out Of Stock'], 400);
+            }
         } else {
-            return redirect()->back()->withErrors("Stok Kurang")->withInput();
+            // Jika produk dengan ukuran large belum ada, buat entri baru dalam keranjang
+            if ($jumlah <= $request->stok) {
+                $data = new Cart;
+                $data->id_user = $customer;
+                $data->id_produk = $id;
+                $data->harga = $request->harga;
+                $data->jumlah = $jumlah;
+                $data->save();
+            } else {
+                return response()->json(['error' => 'Out Of Stock'], 400);
+            }
         }
+
+        return view('menu');
     }
+
+
 
     public function hitungHarga(Request $request)
     {

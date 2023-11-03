@@ -222,6 +222,12 @@ function addCart(id) {
             },
             error: function (xhr, status, error) {
                 console.log(xhr.responseText);
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Out Of Cart',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
             }
         });
     }

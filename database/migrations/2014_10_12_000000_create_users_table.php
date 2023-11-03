@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('telepon')->unique();
             $table->string('password');      
-            $table->boolean('verified');
+            $table->boolean('verified')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
