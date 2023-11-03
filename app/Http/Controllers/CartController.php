@@ -34,35 +34,17 @@ class CartController extends Controller
     {
         $data = Produks::find($id);
         return view('customer.shopping-cart', compact('data'));
-    }
-
-
-    // function addCart(Request $request, $id)
-    // {
-    //     $jumlah = $request->input('jumlah');
-    //     $customer = Auth::user()->id;
-    //     $data = new Cart;
-    //     $data->id_user = $customer;
-    //     $data->id_produk = $id;
-    //     $data->harga = $request->harga;
-    //     if ($jumlah <= $request->stok) {
-    //         $data->jumlah = $jumlah;
-    //         $data->save();
-    //         return view('menu');
-    //     } else {
-    //         return redirect()->back()->withErrors("Stok Kurang")->withInput();
-    //     }
-    // }
+    }    
 
     function addCart(Request $request, $id)
     {
         $jumlah = $request->input('jumlah');
+        $ukuran = $request->input('ukuran');
         $customer = Auth::user()->id;
-
-        // Cek apakah produk dengan ukuran large sudah ada dalam keranjang
+        
         $existingCartItem = Cart::where('id_user', $customer)
             ->where('id_produk', $id)
-            ->where('harga', $request->harga) // Tambahkan kondisi harga (small, medium, large)
+            ->where('size', $ukuran) 
             ->first();
 
         if ($existingCartItem) {
@@ -84,6 +66,7 @@ class CartController extends Controller
                 $data->id_produk = $id;
                 $data->harga = $request->harga;
                 $data->jumlah = $jumlah;
+                $data->size = $ukuran;
                 $data->save();
             } else {
                 return response()->json(['error' => 'Out Of Stock'], 400);
@@ -136,10 +119,12 @@ class CartController extends Controller
             }
 
             $items[] = [
+                'id_transaksi' => $id_transaksi,
                 'name' => $dataMenu->id_user,
                 'produk' => $dataMenu->id_produk,
                 'quantity' => $dataMenu->jumlah,
                 'price' => $total,
+                'size' => $dataMenu->size,
             ];
 
             $data = new Detail_penjualan;
@@ -147,6 +132,7 @@ class CartController extends Controller
             $data->id_menu = $dataMenu->id_produk;
             $data->jumlah = $dataMenu->jumlah;
             $data->harga_penjualan = $total;
+            $data->size = $dataMenu->size;
             $data->save();
 
             $produk = Produks::find($data->id_menu);

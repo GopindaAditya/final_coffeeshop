@@ -117,7 +117,7 @@
                     });
                     var qrCodeText = '';
                             response.items.forEach(function(item) {
-                                qrCodeText += 'id customer: '+item.name +'\nid produks'+item.produk +'\nJumlah Beli:' + item.quantity + '\nHarga:' + item.price +
+                                qrCodeText += 'id transaksi: '+item.id_transaksi+'\nid customer: '+item.name +'\nid produks'+item.produk +'\nSize: '+item.size+'\nJumlah Beli:' + item.quantity + '\nHarga:' + item.price +
                                     '\n';
                             });
                             

@@ -52,6 +52,8 @@ Route::post('/customer/addCart/{id}', [CartController::class, 'addCart'])->name(
 Route::post('/customer/cart/delete', [CartController::class, 'destroy'])->name('delCart'); // Ubah nama rute menjadi 'addToCart'
 Route::post('/customer/cekout', [CartController::class, 'cekout'])->name('cekout');
 Route::get('/customer/qrcode', [CartController::class, 'qrcode'])->name('qrcode');
+Route::get('/customer/uploadBukti', [PenjualanController::class, 'showUploadBukti'])->name('showUploadBukti');
+Route::post('/customer/uploadBukti', [PenjualanController::class, 'uploadBukti'])->name('uploadBukti');
 
 //owner route
 Route::get('/owner/menu',[OwnerController::class, 'index'])->name('owner');
@@ -77,6 +79,7 @@ Route::post('/kasir/menu/addStok/{id}', [KasirController::class, 'addStok'])->na
 Route::post('/kasir/menu/minStok/{id}', [KasirController::class, 'minStok'])->name('minStok');
 Route::get('/kasir/pesanan', [PenjualanController::class, 'index'])->name('pesanan');
 Route::get('/kasir/pesanan/read', [PenjualanController::class, 'read'])->name('pesanan.read');
+Route::get('/kasir/pesanan/bukti/{id}', [PenjualanController::class, 'showBukti'])->name('pesanan.bukti');
 Route::post('/kasir/pesanan/confirm/{id}', [PenjualanController::class, 'confirm'])->name('pesanan.confirm');
 Route::get('/kasir/nota', [PenjualanController::class, 'nota'])->name('nota');
 Route::get('/kasir/nota/read', [PenjualanController::class, 'readNota'])->name('nota.read');

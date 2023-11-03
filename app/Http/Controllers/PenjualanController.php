@@ -161,4 +161,33 @@ Terima kasih',
         return view('owner.laporan', compact('penjualanData', 'menu', 'penjualanProduk'));
     }
     
+    public function showUploadBukti(){
+        return view('customer.uploadBukti');
+    }
+
+    public function uploadBukti(Request $request){
+        $request->validate([            
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+        ]); 
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+            $imageName = time() . '.' . $image->getClientOriginalExtension(); // Buat nama unik untuk gambar
+            $image->storeAs('public/', $imageName); // Simpan gambar ke direktori yang diinginkan
+        } else {
+            return response()->json(['message' => 'Gambar produk wajib diunggah!'], 422);
+        }
+        
+        $data = Penjualan::find($request->id_transaksi);
+        if(!$data){
+            return response()->json("Data not found", 404);
+        }else{
+            $data->bukti_tf = $imageName;
+            $data->save();
+            return response()->json("success upload bukti", 200);
+        }
+    }
+    public function showBukti($id){
+        $data = Penjualan::find($id);
+        return view('kasir.buktiPembayara', compact('data'));
+    }
 }

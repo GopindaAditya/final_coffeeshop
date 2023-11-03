@@ -23,7 +23,7 @@
                             <td>{{ $detail->id_menu }}</td>
                             <td>{{ $detail->harga_penjualan }}</td>
                             <td>{{ $detail->jumlah }}</td>
-                            <td><button class="btn" style ="background-color:#7B551C;color:white">View</button></td>
+                            <td><button class="btn" style ="background-color:#7B551C;color:white" onclick="showBukti({{ $data['penjualan']->id }})">View</button></td>
                             <td><button class="btn" id="btn" onClick="confirm({{ $data['penjualan']->id }})" style ="background-color:#7B551C;color:white">Confirm</button></td>
                         </tr>
                     @else

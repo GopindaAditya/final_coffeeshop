@@ -180,9 +180,9 @@ function kurangJumlah() {
 function addCart(id) {
     var name = $("#name").val();
     var harga = $("#harga").val();
-    var stok = $("#stok").data("stok"); // Mengambil stok dari atribut data
-    console.log('Stok:',stok)
+    var stok = $("#stok").data("stok"); // Mengambil stok dari atribut data    
     var jumlah = $("#jumlah").val();
+    var ukuran = $("input[name='ukuran']:checked").val();
 
     if (parseInt(jumlah) > parseInt(stok)) {
         // Jumlah melebihi stok, tampilkan pesan kesalahan
@@ -197,6 +197,7 @@ function addCart(id) {
         formData.append('harga', harga);
         formData.append('stok', stok);
         formData.append('jumlah', jumlah);
+        formData.append('ukuran', ukuran);
 
         $.ajaxSetup({
             headers: {

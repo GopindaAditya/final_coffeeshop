@@ -4,7 +4,20 @@
         <h1>Orders that need to be confirmed</h1>
     </div>
     <div id="read" class="mt-3"></div>
-
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="page"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(function() {
             read();
@@ -14,6 +27,29 @@
             $.get("{{ route('pesanan.read') }}", {}, function(data, status) {
                 $("#read").html(data);
             })
+        }
+
+        function showBukti(id) {
+            console.log(id);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: "{{ url('/kasir/pesanan/bukti') }}/" + id,
+                method: "GET", // Ubah metode HTTP menjadi POST
+                data: {},
+                success: function(data, status) {
+                    $("#staticBackdropLabel").html("Bukti Pembayran");
+                    $("#page").html(data);
+                    $("#staticBackdrop").modal("show");
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
         }
 
         function confirm(id) {
