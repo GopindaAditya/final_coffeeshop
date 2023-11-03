@@ -67,7 +67,7 @@ Route::post('/owner/menu/delete/{id}', [OwnerController::class, 'destroy'])->nam
 Route::post('/owner/menu/addStok/{id}', [OwnerController::class, 'addStok'])->name('addStok');
 Route::post('/owner/menu/minStok/{id}', [OwnerController::class, 'minStok'])->name('minStok');
 Route::get('/owner/laporan', [OwnerController::class, 'laporan']);
-
+Route::get('/owner/cetakLaporan', [OwnerController::class, 'cetakLaporan'])->name('cetakLaporan');
 
 //kasir route
 Route::get('/kasir/menu', [KasirController::class, 'index'])->name('kasir');

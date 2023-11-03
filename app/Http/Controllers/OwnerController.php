@@ -138,4 +138,9 @@ class OwnerController extends Controller
         }        
         return view('owner.laporan', compact('penjualanData', 'menu', 'penjualanProduk'));
     }
+
+    public function cetakLaporan() {
+        $data = Detail_penjualan::all();
+        return response()->json($data, 200);
+    }
 }   

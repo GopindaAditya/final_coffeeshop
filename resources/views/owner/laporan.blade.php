@@ -23,9 +23,14 @@
             </div>
         </div>
     </div>
+    <div class="mt-3">
+        <button id="exportToExcelButton" class="btn btn-success">Export to Excel</button>
+    </div>
+
 
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.core.min.js"></script>
     <script>
         window.onload = function() {
             var chart = new CanvasJS.Chart("canvasjsChartContainer", {
@@ -56,7 +61,7 @@
         // Ambil nama produk dari data yang dikirimkan dari controller
         const produkLabels = {!! json_encode($menu->pluck('name')) !!};
         const produkData = {!! json_encode($penjualanProduk) !!};
-        
+
         // Data untuk Bar Chart
         const barChartData = {
             labels: produkLabels,
@@ -67,20 +72,20 @@
         };
 
         // Data untuk Pie Chart
-        const pieChartData = {
-            labels: produkLabels,
-            datasets: [{
-                backgroundColor: ["red", "green", "blue", "orange", "brown"],
-                data: produkData,
-            }],
-        };
+        // const pieChartData = {
+        //     labels: produkLabels,
+        //     datasets: [{
+        //         backgroundColor: ["red", "green", "blue", "orange", "brown"],
+        //         data: produkData,
+        //     }],
+        // };
 
         // Opsi untuk Bar Chart
         const barChartOptions = {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true 
+                        beginAtZero: true
                     }
                 }]
             },
@@ -113,11 +118,44 @@
             options: barChartOptions,
         });
         // Inisialisasi Pie Chart
-        const pieChartCtx = document.getElementById("pieChart").getContext("2d");
-        new Chart(pieChartCtx, {
-            type: "pie",
-            data: pieChartData,
-            options: pieChartOptions,
+        // const pieChartCtx = document.getElementById("pieChart").getContext("2d");
+        // new Chart(pieChartCtx, {
+        //     type: "pie",
+        //     data: pieChartData,
+        //     options: pieChartOptions,
+        // });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Tangani klik tombol ekspor
+            $("#exportToExcelButton").click(function() {
+                // Mengirim permintaan ke controller untuk mendapatkan data
+                $.ajax({
+                    url: '/owner/cetakLaporan',
+                    method: 'GET',
+                    success: function(data) {
+                        console.log(data);
+                        // Data berhasil diambil, sekarang ekspor data ke Excel
+                        exportToExcel(data);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            // Fungsi ekspor data ke Excel
+            function exportToExcel(data) {
+                // Buat objek Workbook baru
+                var wb = XLSX.utils.book_new();
+                // Konversi data ke format Excel
+                var ws = XLSX.utils.json_to_sheet(data);
+                // Tambahkan worksheet ke workbook
+                XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+                // Simpan workbook sebagai file Excel
+                XLSX.writeFile(wb, 'laporan_penjualan.xlsx');
+            }
         });
     </script>
 @endsection
