@@ -145,17 +145,29 @@
                 });
             });
 
-            // Fungsi ekspor data ke Excel
             function exportToExcel(data) {
+                // Dapatkan tahun saat ini
+                var tahunSekarang = new Date().getFullYear();
+                // Dapatkan nama bulan saat ini dalam bentuk teks (misalnya, "Januari")
+                var bulanSekarang = new Date().toLocaleString('default', {
+                    month: 'long'
+                });
+
                 // Buat objek Workbook baru
                 var wb = XLSX.utils.book_new();
                 // Konversi data ke format Excel
                 var ws = XLSX.utils.json_to_sheet(data);
                 // Tambahkan worksheet ke workbook
                 XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-                // Simpan workbook sebagai file Excel
-                XLSX.writeFile(wb, 'laporan_penjualan.xlsx');
+
+                // Buat nama file dengan format "laporan_penjualan_tahun_bulan.xlsx"
+                var namaFile = 'laporan_penjualan_' + bulanSekarang.toLowerCase() +'_'+ tahunSekarang + '.xlsx';
+
+                // Simpan workbook sebagai file Excel dengan nama file yang telah dibuat
+                XLSX.writeFile(wb, namaFile);
             }
+
+
         });
     </script>
 @endsection
