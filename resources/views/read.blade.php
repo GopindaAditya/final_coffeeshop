@@ -28,7 +28,8 @@
                         {{ $menu->name }}
                         <div class="row">
                             @if ($menu->stok>0)
-                            <div class="col-md-8">{{ $menu->harga }}</div>
+
+                            <div class="col-md-8">{{ $menu->hargaP }}</div>                            
                             <div class="col-md-1">
                                 <a class="btn" href="{{ url('/customer/shopping-cart/'.$menu->id) }}">+</a>
                             </div>

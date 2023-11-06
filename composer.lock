@@ -4,8 +4,69 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "afb9f079ab0c118c4f1fa5e0f2a113eb",
+    "content-hash": "9dd4d5313b152d3fe62370387bba0d9b",
     "packages": [
+        {
+            "name": "afrizalmy/laraindo",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/afrizal423/laraindo.git",
+                "reference": "4c73e9815230706cdaa5008e4a395fa5bf17b012"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/afrizal423/laraindo/zipball/4c73e9815230706cdaa5008e4a395fa5bf17b012",
+                "reference": "4c73e9815230706cdaa5008e4a395fa5bf17b012",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.0|^10.0",
+                "php": ">=8.0.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laraindo\\LaraindoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laraindo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Afrizal",
+                    "email": "afrizalyasin423@gmail.com",
+                    "homepage": "https://github.com/afrizal423",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Package Laravel 9 sederhana untuk format indonesia terdiri dari Localization, Rupiah format, Date format",
+            "keywords": [
+                "indo",
+                "indonesia",
+                "laravel",
+                "laravel 9",
+                "localization",
+                "rupiah",
+                "tanggal"
+            ],
+            "support": {
+                "docs": "https://github.com/afrizal423/laraindo/README.md",
+                "email": "afrizalyasin423@gmail.com",
+                "issues": "https://github.com/afrizal423/laraindo/issues",
+                "source": "https://github.com/afrizal423/laraindo"
+            },
+            "time": "2023-02-11T11:43:20+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",

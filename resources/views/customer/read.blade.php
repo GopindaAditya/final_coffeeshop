@@ -36,7 +36,7 @@
                                 <div class="row"><p>{{ $cartItem->jumlah }}</p></div>
                             </div>
                             <div class="col-2 pt-3">
-                                <h5>{{ $cartItem->harga }}</h5>
+                                <h5>@currency($cartItem->harga )</h5>
                             </div>
                             <div class="col-1 pt-3">
                                 <input type="checkbox" name="check" id="check_{{ $cartItem->id }}" class="item-checkbox" value="{{ $cartItem->id }}">
@@ -72,7 +72,7 @@
                     <div class="col">
                         <p>{{ $menu->name }}</p>
                         <p>{{ $cartItem->jumlah }}</p>
-                        <p>{{ $cartItem->harga }}</p>
+                        <p>@currency($cartItem->harga)</p>
                     </div>
                 </div>
                 @php     
@@ -85,7 +85,7 @@
                         <h4 class ="fw-bold">Total</h4>
                     </div>
                     <div class="col">
-                        <h4 class ="fw-bold">{{ $totalHarga }}</h4>
+                        <h4 class ="fw-bold">@currency($totalHarga)</h4>
                     </div>
                 </div>
                 <div class="tombol row-2 d-flex justify-content-end mt-4">

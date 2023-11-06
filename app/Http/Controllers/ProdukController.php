@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produks;
+use Laraindo\RupiahFormat;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -12,6 +13,10 @@ class ProdukController extends Controller
     }
     function read() {
         $data = Produks::all();
+        foreach ($data as $menu){
+            $harga = RupiahFormat::currency($menu->harga);
+            $menu->hargaP = $harga;
+        }
         return view('read', compact('data'));
     }
 
