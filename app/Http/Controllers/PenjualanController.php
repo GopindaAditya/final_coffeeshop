@@ -44,84 +44,99 @@ class PenjualanController extends Controller
         $pen = Penjualan::find($id);
         $pen->id_kasirs = $kasirId->id;
         $pen->status_transaksi = $request->status_transaksi;
-        $data = Detail_penjualan::where('id_transaksi', $pen->id)->first();
         $pen->save();
-        $user = User::find($pen->id_pelanggan);
-        $menu = Produks::find($data->id_menu);
-        $total = $data->harga_penjualan*$data->jumlah;
-        foreach ($data as $pesanan){
-        if ($request->status_transaksi == '1') {            
-            $curl = curl_init();
 
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.fonnte.com/send',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array(
-                    'target' => $user->telepon,
-                    'message' => 'COFFEE MAS BROO
+        $details = Detail_penjualan::where('id_transaksi', $pen->id)->get();
+        $uniqueMenuItems = $details->unique('id_menu'); // Mengambil item pesanan unik berdasarkan ID menu
+
+        $menuDetails = [];
+        foreach ($uniqueMenuItems as $item) {
+            $menu = Produks::find($item->id_menu);
+            $total = $details->where('id_menu', $item->id_menu)->sum('harga_penjualan'); // Menghitung total harga untuk item menu ini
+
+            $menuDetails[] = [
+                'menu_name' => $menu->name,
+                'harga_penjualan' => $item->harga_penjualan,
+                'jumlah' => $details->where('id_menu', $item->id_menu)->sum('jumlah'),
+                'total' => $total,
+            ];
+        }
+
+        $user = User::find($pen->id_pelanggan);
+
+        // Bangun pesan untuk setiap item pesanan
+        $message = 'COFFEE MAS BROO
 Jl. Paingan, Krodan, Maguwoharjo, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta
 085738815164
-                    
-Nomer Nota : '
-.$pen->id. '
-                    
-Kasir : '
-.$kasirId->name.'
-                    
-Pelanggan Yth : '
-.$user->name. '
-                    
-Tanggal :'. $pen->updated_at .'
-                    
-                    
+
+Nomer Nota: ' . $pen->id . '
+
+Kasir: ' . $kasirId->name . '
+
+Pelanggan Yth: ' . $user->name . '
+
+Tanggal: ' . $pen->updated_at . '
+
 ======================
-Detail pesanan: 
-                    
-✅'. $menu ->name. '
-  '. $data ->harga_penjualan. '
-  '. $data ->jumlah.'
-                      
-Ket : 
-                    
-==============
-Detail biaya : 
-Total tagihan : Rp'.$total.'
-                    
-Pembayaran: 
-💵 Tunai Rp'.$total.'
-                    
+Detail pesanan:';
+
+        foreach ($menuDetails as $menuDetail) {
+            $message .= '
+✅ ' . $menuDetail['menu_name'] . '
+Harga: ' . $menuDetail['harga_penjualan']/$menuDetail['jumlah'] . '
+Jumlah: ' . $menuDetail['jumlah'] . '
+Total: ' . $menuDetail['total'];
+        }
+        $totalTagihan = array_sum(array_column($menuDetails, 'total'));
+        $message .= '
+=================
+Detail biaya:
+Total tagihan: Rp' . number_format($totalTagihan, 0, ',', '.') . '
+
+Pembayaran:
+💵 Tunai Rp' . number_format($totalTagihan, 0, ',', '.') . '
+
 Status: Lunas
 =================
-                    
-Terima kasih',
-                    'countryCode' => '62',
-                    //optional
-                ),
-                CURLOPT_HTTPHEADER => array(
-                    'Authorization: Ph2GJQCYaeAs7yCy8HTW' //change TOKEN to your actual token
-                ),
-            )
-            );
 
-            $response = curl_exec($curl);
+Terima kasih';
 
-            curl_close($curl);
+        // Kirim pesan ke pelanggan (gunakan curl atau metode pengiriman pesan lainnya)
+        // Contoh menggunakan curl:
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $user->telepon,
+                'message' => $message,
+                'countryCode' => '62',
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Ph2GJQCYaeAs7yCy8HTW' //change TOKEN to your actual token
+            ),
+        ));
 
-            return response()->json('update status sukses', 200);
-        } else {            
-            $stok = $menu->stok + $data->jumlah;
-            $menu->stok = $stok;
-            $menu->save();
-            Detail_Penjualan::where('id_transaksi', $pen->id)->delete();
-            return response()->json('pesanan ditolak', 200);
-        }
-    }
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        // Setelah mengirim pesan, berikan respons kepada pengguna atau lakukan tindakan lainnya
+        return response()->json('update status sukses', 200);
+
+        // } else {            
+        //     $stok = $menu->stok + $data->jumlah;
+        //     $menu->stok = $stok;
+        //     $menu->save();
+        //     Detail_Penjualan::where('id_transaksi', $pen->id)->delete();
+        //     return response()->json('pesanan ditolak', 200);
+        // }
+    // }
     }
 
     function nota()

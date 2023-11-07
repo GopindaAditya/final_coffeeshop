@@ -81,7 +81,7 @@
             $('.item-checkbox:checked').each(function() {
                 selectedItems.push($(this).val());
             });
-
+            console.log(selectedItems);
             if (selectedItems.length === 0) {
                 // alert('Select at least one item for checkout.');
                 Swal.fire({
@@ -96,7 +96,7 @@
             var formData = {
                 items: selectedItems
             };
-
+            console.log(formData);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

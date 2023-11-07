@@ -20,10 +20,10 @@
     <h4>Cart</h4>
     <hr>
     <div class="keranjang">
-        @foreach ($produk as $menu)
+        @foreach ($data as $menu)
         @php
-            $cartItem = $data->where('id_produk', $menu->id)->first();                
-            $total = $cartItem->harga * $cartItem->jumlah;
+            // $cartItem = $data->where('id_produk', $menu->id)->first();                
+            $total = $menu->harga * $menu->jumlah;
         @endphp
                    <div class="col">
                     <div class="card checkbox-card" style="background: #9d794231; margin:2vh; border-radius:5vh;">
@@ -33,13 +33,13 @@
                             </div>
                             <div class="col-7 pt-3">
                                 <div class="row"><h4>{{ $menu->name }}</h4></div>
-                                <div class="row"><p>{{ $cartItem->jumlah }}</p></div>
+                                <div class="row"><p>{{ $menu->jumlah }}</p></div>
                             </div>
                             <div class="col-2 pt-3">
-                                <h5>@currency($cartItem->harga )</h5>
+                                <h5>@currency($menu->harga)</h5>
                             </div>
                             <div class="col-1 pt-3">
-                                <input type="checkbox" name="check" id="check_{{ $cartItem->id }}" class="item-checkbox" value="{{ $cartItem->id }}">
+                                <input type="checkbox" name="check" id="check_{{ $menu->id }}" class="item-checkbox" value="{{ $menu->id}}">
                             </div>                                                    
                         </div>
                     </div>  
@@ -58,10 +58,10 @@
                 @php
                     $totalHarga=0
                 @endphp
-                @foreach ($produk as $menu)    
+                @foreach ($data as $menu)    
                 @php
-                $cartItem = $data->where('id_produk', $menu->id)->first();                
-                $total = $cartItem->harga * $cartItem->jumlah;
+                // $cartItem = $data->where('id_produk', $menu->id)->first();                
+                $total = $menu->harga * $menu->jumlah;
                 @endphp 
                 <div class="row">
                     <div class="col">
@@ -71,12 +71,12 @@
                     </div>
                     <div class="col">
                         <p>{{ $menu->name }}</p>
-                        <p>{{ $cartItem->jumlah }}</p>
-                        <p>@currency($cartItem->harga)</p>
+                        <p>{{ $menu->jumlah }}</p>
+                        <p>@currency($menu->harga)</p>
                     </div>
                 </div>
                 @php     
-                $totalHarga += $cartItem->harga * $cartItem->jumlah;
+                $totalHarga += $menu->harga * $menu->jumlah;
                 @endphp
                 @endforeach
                 <hr>

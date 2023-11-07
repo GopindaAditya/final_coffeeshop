@@ -24,9 +24,14 @@ class CartController extends Controller
     function read()
     {
         $user = Auth::user();
-        $data = Cart::where('id_user', $user->id)->get();
-        $produk = Produks::whereIn('id', $data->pluck('id_produk'))->get();
-        return view('customer.read', compact('data', 'produk'));
+        // $data = Cart::where('id_user', $user->id)->get();
+        // $produk = Produks::whereIn('id', $data->pluck('id_produk'))->get();
+        $data = Cart::where('id_user', $user->id)->join('Produks', 'Cart.id_produk', '=', 'Produks.id')
+        ->select('Cart.id','Cart.id_produk', 'Produks.name', 'Cart.id_user', 'Cart.harga', 'Cart.jumlah', 'Cart.size', 'Produks.foto')
+        ->get();
+        // return view('customer.read', compact('data', 'produk'));
+        // dd($data);
+        return view('customer.read', compact('data'));
     }
 
 
