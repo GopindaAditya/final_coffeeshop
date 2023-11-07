@@ -52,7 +52,13 @@ class AuhtController extends Controller
             'password' => 'required|confirmed',
             'password_confirmation' => 'required'   
         ]);
-        if ($request->password == $request->password_confirmation) {
+        
+        if (User::where('email', $request->email)->exists() || User::where('telepon', $request->telepon)->exists()) {
+            // return response()->json(["error" => "Email or telepon already exists"], 400);
+            return redirect()->route('register')->with('error', 'Email or telepon already exists');
+
+        }
+        else if ($request->password == $request->password_confirmation) {
             $telepon = $request->telepon;
             $data = new User;
             $data->name = $request->name;
@@ -62,8 +68,7 @@ class AuhtController extends Controller
             $data->telepon = $telepon;
             $otp = $this->generateOtp();
             Session::put('otp', $otp);
-            Session::put('telepon', $telepon);
-            // dd($otp);
+            Session::put('telepon', $telepon);            
             
             $curl = curl_init();
 

@@ -76,7 +76,7 @@
                 <h4 style ="font-weight:bold">{{ $data->name }}</h4>
                 <div class="form-group" style ="margin-top: -5vh;">
                   <label style ="text-align:center" for="harga"></label>
-                  <input type="text" name="harga" id="harga" class="form-control" value="{{ $data->harga }}" readonly data-harga="{{ $data->harga }}">
+                  <input type="text" name="harga" id="harga" class="form-control" value="@currency( $data->harga )" readonly>
               </div>
               </div>
               <div class="body-card">
@@ -147,8 +147,17 @@
               idProduk: idProduk,
               _token: "{{ csrf_token() }}"
           },
-          success: function(response) {                
-              $("#harga").val(response.harga);
+          success: function(response) {                            
+            var formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0, // Minimum number of decimal places
+                maximumFractionDigits: 0 // Maximum number of decimal places
+            });
+
+            var formattedPrice = formatter.format(response.harga);
+
+            $("#harga").val(formattedPrice);
           }
       });
   }
@@ -179,10 +188,14 @@ function kurangJumlah() {
 
 function addCart(id) {
     var name = $("#name").val();
-    var harga = $("#harga").val();
     var stok = $("#stok").data("stok"); // Mengambil stok dari atribut data    
     var jumlah = $("#jumlah").val();
-    var ukuran = $("input[name='ukuran']:checked").val();
+    var ukuran = $("input[name='ukuran']:checked").val();  
+    
+    var harga = $("#harga").val();
+    var numericString = harga.replace(/\D+/g, '');
+    var intValue = parseInt(numericString, 10);
+
 
     if (parseInt(jumlah) > parseInt(stok)) {
         // Jumlah melebihi stok, tampilkan pesan kesalahan
@@ -194,7 +207,7 @@ function addCart(id) {
     } else {
         var formData = new FormData();
         formData.append('name', name);
-        formData.append('harga', harga);
+        formData.append('harga', intValue);
         formData.append('stok', stok);
         formData.append('jumlah', jumlah);
         formData.append('ukuran', ukuran);
