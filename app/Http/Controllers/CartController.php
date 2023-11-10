@@ -131,13 +131,13 @@ class CartController extends Controller
                 'price' => $total,
                 'size' => $dataMenu->size,
             ];
-
+            
             $data = new Detail_penjualan;
-            $data->id_transaksi = $id_transaksi; // Assign the valid integer value
+            $data->id_transaksi = $id_transaksi; 
             $data->id_menu = $dataMenu->id_produk;
             $data->jumlah = $dataMenu->jumlah;
             $data->harga_penjualan = $total;
-            $data->size = $dataMenu->size;
+            $data->size = $dataMenu->size;            
             $data->save();
 
             $produk = Produks::find($data->id_menu);
@@ -145,8 +145,9 @@ class CartController extends Controller
             $produk->save();
 
             $dataMenu->delete();
+
         }
-        $response = ['items' => $items]; // Create a response array with 'items' key
+        $response = ['items' => $items, 'data'=>$data]; // Create a response array with 'items' key
         return response()->json($response); // Send JSON response to the client
     }
 
