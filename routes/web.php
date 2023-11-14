@@ -20,9 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuhtController::class, 'index'])->name('login');
-Route::post('/', [AuhtController::class, 'login']);
-Route::post('/logout', [AuhtController::class, 'logout'])->name('logout');
+// Route::get('/otp', function () {
+//     return view('verify-otp');
+// });
+
+Route::get('/login', [AuhtController::class, 'index'])->name('login');
+Route::post('/login', [AuhtController::class, 'login']);
+Route::get('/logout', [AuhtController::class, 'logout'])->name('logout');
 Route::get('/register', [AuhtController::class, 'showReq'])->name('register');
 Route::post('/register', [AuhtController::class, 'register']);
 Route::post('/verifyOtp', [AuhtController::class, 'verifyOtp'])->name('verify.otp');
@@ -34,7 +38,7 @@ Route::get('/resetPassword',[AuhtController::class, 'showResetPassword'])->name(
 Route::post('/resetPassword',[AuhtController::class, 'resetPassword']);
 
 
-Route::get('/menu', [ProdukController::class, 'index'])->name('manu');
+Route::get('/', [ProdukController::class, 'index'])->name('manu');
 Route::get('/read', [ProdukController::class, 'read'])->name('read');
 Route::post('/search', [ProdukController::class, 'search'])->name('search');
 

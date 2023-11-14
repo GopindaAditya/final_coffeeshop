@@ -43,10 +43,13 @@
                         <a class="nav-link" href="{{ route('customer') }}">My Profile</a>
                       </li>
                       <li class="nav-item">
-                          <form action="{{ route('logout') }}" method="POST">
+                          <form method="POST">
                               @csrf
-                              <button type="submit" class="btn btn-danger w-100 ms-2">Logout</button>
+                              {{-- <button type="submit" class="btn btn-danger w-50 ms-2">Logout</button> --}}
+                              <a class="btn ms-2 text-light nav-link bg-danger" href="{{ route('logout') }}">Logout</a>
+                              {{-- --}}
                           </form>
+                          {{-- @csrf --}}
                       </li>
                       @endauth
                     </ul>

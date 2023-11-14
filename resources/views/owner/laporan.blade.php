@@ -23,8 +23,8 @@
             </div>
         </div>
     </div>
-    <div class="mt-3">
-        <button id="exportToExcelButton" class="btn btn-success">Export to Excel</button>
+    <div class="mt-3 d-flex justify-content-end fixed-bottom">
+        <button id="exportToExcelButton" class="btn" style ="background-color: #9D7942; color:#ffff; margin-right:10vh; margin-bottom:3vh;">Export to Excel</button>
     </div>
 
 

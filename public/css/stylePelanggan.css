@@ -227,7 +227,7 @@
 }
 
 .card .card-title a:hover{
-    scale: 1.2;
+    transform: scale (1.2);
 }
 
 .row .card .card-title .card-price{

@@ -33,10 +33,10 @@
                             </div>
                             <div class="col-7 pt-3">
                                 <div class="row"><h4>{{ $menu->name }}</h4></div>
-                                <div class="row"><p>{{ $menu->jumlah }}</p></div>
+                                <div class="row"><p>{{ $menu->jumlah }}<span>({{ $menu->size }})</span></p></div>
                             </div>
                             <div class="col-2 pt-3">
-                                <h5>@currency($menu->harga)</h5>
+                                <h5>@currency($total)</h5>
                             </div>
                             <div class="col-1 pt-3">
                                 <input type="checkbox" name="check" id="check_{{ $menu->id }}" class="item-checkbox" value="{{ $menu->id}}">
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col">
                         <p>{{ $menu->name }}</p>
-                        <p>{{ $menu->jumlah }}</p>
+                        <p>{{ $menu->jumlah }}<span>({{ $menu->size }})</span></p>
                         <p>@currency($menu->harga)</p>
                     </div>
                 </div>

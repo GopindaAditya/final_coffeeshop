@@ -2,6 +2,7 @@
         <div class="header">
            <h3 style="color: #9D7942;"> MENU </h3>
         </div>
+        @if (count($data) > 0)
         <div class="row">
         @foreach ($data as $menu)
             <div class="col">
@@ -58,5 +59,15 @@
         </div>
         @endforeach
         </div>
+
+@else
+<div class="container text-center">
+    <div class="alert" role="alert" style="border-radius: 10px;">
+        <h3 class="alert-heading mb-3">The Searched Menu Is Not Available</h3>
+        <hr>
+        <p style="font-size: 1.2rem;">Try To Find Another Menu</p>
+    </div>
+</div>
+@endif
     </div>
 

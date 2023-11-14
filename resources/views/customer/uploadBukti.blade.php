@@ -1,6 +1,6 @@
 <form id="inputForm">
     @csrf
-        <div class="form-group text-start">
+        <div class="form-group text-start mb-4">
             <label for="foto"></label>
             <input type="file" name="foto" id="foto" class="form-control">
         </div>        

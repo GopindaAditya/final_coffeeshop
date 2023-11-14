@@ -96,7 +96,7 @@ Detail biaya:
 Total tagihan: Rp' . number_format($totalTagihan, 0, ',', '.') . '
 
 Pembayaran:
-💵 Tunai Rp' . number_format($totalTagihan, 0, ',', '.') . '
+💵 Transfer Rp' . number_format($totalTagihan, 0, ',', '.') . '
 
 Status: Lunas
 =================

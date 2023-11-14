@@ -66,7 +66,7 @@
 
         function create() {
             $.get("{{ route('create') }}", {}, function(data, status) {
-                $("#staticBackdropLabel").html("Tambahkan Menu Baru");
+                $("#staticBackdropLabel").html("Add New Menu");
                 $("#page").html(data);
                 $("#staticBackdrop").modal("show");
             });
@@ -173,7 +173,7 @@
                     read();
                     Swal.fire({
                         icon: 'success',
-                        title: 'Data berhasil diubah!',
+                        title: 'Data successfully changed!',
                         showConfirmButton: false,
                         timer: 1500
                     });

@@ -115,7 +115,6 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    // Tampilkan hasil pencarian di div dengan id "read"
                     $("#read").html(response);
                 },
                 error: function(xhr, status, error) {

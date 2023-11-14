@@ -45,7 +45,7 @@
     <script>
         function create() {
             $.get("{{ route('showUploadBukti') }}", {}, function(data, status) {
-                $("#staticBackdropLabel").html("Upload Bukti Pembayaran");
+                $("#staticBackdropLabel").html("Upload Your Transfer Proof");
                 $("#page").html(data);
                 $("#staticBackdrop").modal("show");
             });
