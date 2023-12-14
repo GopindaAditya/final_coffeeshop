@@ -58,7 +58,7 @@
                     <hr class="my-3">
                      <p class="teks text-light">Haven't Received Your OTP Code?<button class="btn" type="button" onclick="resendOtp()" ><a class="link-info">Resend OTP</a></button></p>
                       {{-- <button type="button" onclick="resendOtp()">resend otp</button>     --}}
-                      <p class="teks text-light">Already have an account?<a href="{{ url('/') }}" class="link-info">Login Here</a></p>
+                      <p class="teks text-light">Already have an account?<a href="{{ url('/login') }}" class="link-info">Login Here</a></p>
                       {{-- <p class="teks text-light">Don't have any account?<a href="{{ url('/register') }}" class="link-info">Register Here</a></p> --}}
                     {{-- </form> --}}
                   </div>
