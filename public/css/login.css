@@ -1,3 +1,11 @@
+/* RESPONSIVE */
+
+@media(max-width:475px){
+    #loginform{
+        padding-block: 30vh;
+    }
+}
+
 h1{
     color: #ffff;
 }
@@ -5,8 +13,15 @@ h1{
 body{
     background-color: #191919;
     background-image: url('/storage/bg.jpg');
-    background-position: center center; 
-    background-attachment: fixed;
+    background-position:center center; 
+    background-attachment:fixed;
     background-size: cover; 
+    background-repeat: no-repeat;
 }
+
+#loginform{
+    padding-block: 5vh;
+}
+
+
 

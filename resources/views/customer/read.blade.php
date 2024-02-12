@@ -21,8 +21,7 @@
     <hr>
     <div class="keranjang">
         @foreach ($data as $menu)
-        @php
-            // $cartItem = $data->where('id_produk', $menu->id)->first();                
+        @php             
             $total = $menu->harga * $menu->jumlah;
         @endphp
                    <div class="col">

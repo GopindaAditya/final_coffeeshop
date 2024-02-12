@@ -79,7 +79,7 @@
               </div>
               <!-- Dropdown Menu -->
               <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn">
                   Kasir
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

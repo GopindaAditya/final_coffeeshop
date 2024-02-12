@@ -2,177 +2,16 @@
 
 
 /* Responsive */
-
-/* Template */
-@media (max-width: 768px) {
-    /* Aturan untuk layar dengan lebar maksimal 768px */
-    .navbar-brand {
-        font-size: 24px; /* Mengubah ukuran teks logo pada layar kecil */
+@media(max-width: 475px){
+    #kolmenu{
+        /* background-color: yellow; */
     }
 }
 
-
-@media (max-width: 576px) {
-    /* Aturan untuk layar dengan lebar maksimal 576px */
+/* HOME */
+#kolmenu{
+    width:100%;
 }
-
-
-/* Cart */
-/* Untuk layar yang lebih kecil, mengatur lebar gambar menjadi 100% */
-@media (max-width: 576px) {
-    .card img {
-        width: 100%;
-    }
-}
-
-/* Mengatur lebar tombol Checkout agar penuh pada layar kecil */
-@media (max-width: 576px) {
-    .checkout-button {
-        width: 100%;
-    }
-}
-
-/* Mengatur padding untuk judul "Cart" pada layar kecil */
-@media (max-width: 576px) {
-    .header {
-        padding-top: 2vh;
-    }
-}
-
-/* Mengatur jarak antara elemen-elemen dalam "Order Summary" pada layar kecil */
-@media (max-width: 576px) {
-    .order-summary .col {
-        margin-bottom: 10px;
-    }
-}
-
-/* Mengatur font size untuk judul "Cart" pada layar kecil */
-@media (max-width: 576px) {
-    .header {
-        font-size: 24px;
-    }
-}
-
-/* Mengatur font size untuk nama produk pada layar kecil */
-@media (max-width: 576px) {
-    .col-7 h4 {
-        font-size: 16px;
-    }
-}
-
-/* Mengatur font size untuk harga produk pada layar kecil */
-@media (max-width: 576px) {
-    .col-2 h5 {
-        font-size: 14px;
-    }
-}
-
-/* Mengatur font size untuk nama produk di "Order Summary" pada layar kecil */
-@media (max-width: 576px) {
-    .order-summary .col p {
-        font-size: 14px;
-    }
-}
-
-/* Mengatur font size untuk total harga di "Order Summary" pada layar kecil */
-@media (max-width: 576px) {
-    .order-summary .col h4 {
-        font-size: 18px;
-    }
-}
-
-/* Home */
-/* Atur lebar tombol pencarian dan judul "Categories" pada layar kecil */
-@media (max-width: 576px) {
-    .form-control {
-        width: 70%;
-    }
-    
-    .header h4 {
-        font-size: 20px;
-    }
-}
-/* Atur kategori menjadi responsif pada perangkat dengan lebar maksimum 576px */
-@media (max-width: 576px) {
-    .categories ul {
-        flex-direction: column; /* Mengubah tata letak kategori menjadi satu kolom */
-        gap: 10px; /* Atur jarak antara kategori */
-    }
-
-    .categories button {
-        width: 100%; /* Lebar tombol mengisi penuh kontainer */
-    }
-}
-
-/* Atur kartu produk pada layar kecil */
-@media (max-width: 576px) {
-    .card {
-        width: 100%;
-    }
-
-    .card-title {
-        font-size: 18px;
-    }
-
-    .card-img-top {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-/* Profile */
-/* Menyesuaikan ukuran gambar profil untuk perangkat berukuran kecil */
-@media (max-width: 576px) {
-    .profile img {
-        width: 70%;
-        max-width: 200px; /* Atur lebar maksimum sesuai keinginan Anda */
-        height: auto;
-    }
-}
-/* Menyesuaikan tombol Order dan Logout pada layar kecil */
-@media (max-width: 576px) {
-    .profile button {
-        font-size: 14px; /* Ukuran font yang lebih kecil */
-    }
-}
-
-/* Shopping-cart */
-/* Atur kartu produk menjadi responsif pada perangkat dengan lebar maksimum 576px */
-@media (max-width: 576px) {
-    .shopping-card {
-        margin: 20px; /* Atur margin sesuai keinginan Anda */
-    }
-
-    .card-body2 {
-        padding: 20px; /* Atur padding sesuai keinginan Anda */
-    }
-
-    .card-title2 {
-        text-align: start;
-        font-size: 20px; /* Atur ukuran font sesuai keinginan Anda */
-    }
-
-    .card-content {
-        padding-top: 10px; /* Atur padding atas sesuai keinginan Anda */
-    }
-
-    .card-content h3 {
-        font-size: 16px; /* Atur ukuran font untuk teks "Coffee Size" */
-    }
-
-    label {
-        display: block;
-        margin-bottom: 10px; /* Atur margin bawah antara radio buttons */
-    }
-
-    button {
-        width: 100%; /* Lebar tombol mengisi penuh kontainer */
-        padding: 15px; /* Atur padding sesuai keinginan Anda */
-        border-radius: 10px; /* Atur radius sudut sesuai keinginan Anda */
-        font-size: 16px; /* Atur ukuran font sesuai keinginan Anda */
-    }
-}
-
 
 /* Navbar */
 
@@ -194,7 +33,6 @@
 }
 
 /* Menu */
-
 .row .card{
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;

@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   // Mendapatkan URL saat ini
   var currentUrl = window.location.pathname;

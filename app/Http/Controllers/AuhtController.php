@@ -163,7 +163,7 @@ Terima kasih atas perhatian Anda',
         if($userInput == $storeOtp){            
             $user = auth()->user();             
             $user->verified = 1;
-            $user ->save();
+            $user->save();
 
             Session::forget('otp');            
             return redirect()->route('manu');
