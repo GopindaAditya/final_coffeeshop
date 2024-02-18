@@ -14,9 +14,20 @@
     .input-group .bi:hover{
       transform: scale(1.3); 
     }
+
+    #profil{
+        margin-top: 2vh;
+    }
+
+    @media(max-width: 475px){
+        #profil{
+            margin-top: 10vh;
+        }
+    }
+
 </style>
 
-<div class="container">
+<div class="container" id="profil">
     <div class="text-center">
       <h1 style ="color:#7B551C">Hello {{ $data->name }}</h1>
   </div>
@@ -35,7 +46,7 @@
                     </div>
                 <div class="row mb-3">
                     <div class="col-lg-12 col-md-12 d-flex justify-content-center">
-                        <div class="input-group w-50">
+                        <div class="input-group w-75">
                             <input type="text" class="form-control" id="name" value="{{ $data->name }}" disabled>
                             <button class="btn" type="button" style ="background-color: #E9ECEF">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#7B551C" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -49,7 +60,7 @@
                 
                 <div class="row mb-3">
                     <div class="col-lg-12 col-md-12 d-flex justify-content-center">
-                        <div class="input-group w-50">
+                        <div class="input-group w-75">
                             <input type="email" class="form-control" id="email" value="{{ $data->email }}" disabled>
                             <button class="btn" type="button" style ="background-color: #E9ECEF">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#7B551C" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -62,7 +73,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-lg-12 col-md-12 d-flex justify-content-center">
-                        <div class="input-group w-50">
+                        <div class="input-group w-75">
                             <textarea class="form-control" id="alamat" disabled>{{ $data->alamat }}</textarea>
                             <button class="btn" type="button" style ="background-color: #E9ECEF">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#7B551C" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -75,7 +86,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-lg-12 col-md-12 d-flex justify-content-center">
-                        <div class="input-group w-50">
+                        <div class="input-group w-75">
                             <input type="text" class="form-control" id="telepon" value="{{ $data->telepon }}" disabled>
                             <button class="btn" type="button" style ="background-color: #E9ECEF">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#7B551C" class="bi bi-pencil-square" viewBox="0 0 16 16">

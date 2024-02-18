@@ -18,7 +18,7 @@
         <div class="container pt-md-4">
             <nav class="navbar navbar-expand-lg fixed-top py-3">
                 <div class="container">
-                  <a class="navbar-brand">Coffe MasBroo</a>
+                  <a class="navbar-brand">Jamune Biyung</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
