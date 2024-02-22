@@ -93,14 +93,14 @@ class CartController extends Controller
         $hargaAwal = $produk->harga;
 
         if ($ukuran === "medium") {
-            $persentase = 5;
+            $hargaAwal = 8000;
         } elseif ($ukuran === "large") {
-            $persentase = 10;
+            $hargaAwal = 20000;
         } else {
-            $persentase = 0;
+            $presentase = 0;
         }
 
-        $hargaBaru = $hargaAwal + ($hargaAwal * ($persentase / 100));
+        $hargaBaru = $hargaAwal;
 
         return response()->json(['harga' => $hargaBaru]);
     }
