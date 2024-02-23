@@ -130,6 +130,7 @@ class CartController extends Controller
                 'quantity' => $dataMenu->jumlah,
                 'price' => $total,
                 'size' => $dataMenu->size,
+                
             ];
             
             $data = new Detail_penjualan;

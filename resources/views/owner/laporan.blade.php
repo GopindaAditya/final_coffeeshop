@@ -68,7 +68,8 @@
 
             // Generate dummy data
             var dummyData = [];
-            var startDate = new Date(); // Mulai dari tanggal saat ini
+            var startDate = new Date(); 
+            startDate.setDate(startDate.getDate()-7);
             for (var i = 0; i < 7; i++) {
                 var currentDate = new Date(startDate);
                 currentDate.setDate(startDate.getDate() + i); // Tambahkan i hari
