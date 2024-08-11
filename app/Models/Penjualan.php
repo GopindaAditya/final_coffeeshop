@@ -16,6 +16,7 @@ class Penjualan extends Model
         'id_pelanggan', 
         'id_kasirs',
         'status_transaksi',
+        'snap_token'
     ];
 
     static function tambahTransaksi()
