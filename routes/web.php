@@ -58,6 +58,9 @@ Route::post('/customer/cekout', [CartController::class, 'cekout'])->name('cekout
 Route::get('/customer/qrcode', [CartController::class, 'qrcode'])->name('qrcode');
 Route::get('/customer/uploadBukti', [PenjualanController::class, 'showUploadBukti'])->name('showUploadBukti');
 Route::post('/customer/uploadBukti', [PenjualanController::class, 'uploadBukti'])->name('uploadBukti');
+Route::get('/customer/updateTransactionStatus/{id}', [CartController::class, 'updateTransactionStatus'])->name('updateTransactionStatus');
+
+
 
 //owner route
 Route::get('/owner/menu',[OwnerController::class, 'index'])->name('owner');

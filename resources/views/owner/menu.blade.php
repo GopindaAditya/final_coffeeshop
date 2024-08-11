@@ -155,6 +155,7 @@
             formData.append('stok', stok);
             formData.append('foto', foto);
 
+            console.log(formData);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

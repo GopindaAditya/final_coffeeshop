@@ -53,8 +53,8 @@ class PenjualanController extends Controller
             ->select('Detail__penjualan.id_transaksi', 'Detail__penjualan.id_menu', 'Produks.name', 'Detail__penjualan.jumlah', 'Detail__penjualan.size', 'Detail__penjualan.harga_penjualan')
             ->get();
         
-            $message = 'COFFEE MAS BROO
-Jl. Paingan, Krodan, Maguwoharjo, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta
+            $message = 'JAMUNE BIYUNG
+Wedomartani, Kec. Ngemplak, Kabupaten Sleman, Daerah Istimewa Yogyakarta
 085738815164
 
 Nomer Nota: ' . $pen->id . '
@@ -88,7 +88,7 @@ Pembayaran:
 <<<<<<
 =======
 💵 Tunai Rp' . number_format($total, 0, ',', '.') . '
->>>>>>> d07362d429422a4da941a80051dd49e60ce599ee
+>>>>>>> 
 
 Status: Lunas
 =================

@@ -24,7 +24,8 @@
         </div>
     </div>
     <div class="mt-3 d-flex justify-content-end fixed-bottom">
-        <button id="exportToExcelButton" class="btn" style ="background-color: #9D7942; color:#ffff; margin-right:10vh; margin-bottom:3vh;">Export to Excel</button>
+        <button id="exportToExcelButton" class="btn"
+            style ="background-color: #9D7942; color:#ffff; margin-right:10vh; margin-bottom:3vh;">Export to Excel</button>
     </div>
 
 
@@ -32,7 +33,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.core.min.js"></script>
     <script>
+        // window.onload = function() {
+        //     var chart = new CanvasJS.Chart("canvasjsChartContainer", {
+        //         animationEnabled: true,
+        //         theme: "light2",
+        //         title: {
+        //             text: "Total Number of Transactions"
+        //         },
+        //         axisX: {
+        //             valueFormatString: "DD MMM",
+        //             intervalType: "day"
+        //         },
+        //         axisY: {
+        //             title: "Number of Transactions",
+        //             includeZero: true
+        //         },
+        //         data: [{
+        //             type: "line", 
+        //             color: "#6599FF",
+        //             xValueType: "dateTime",
+        //             xValueFormatString: "DD MMM",
+        //             yValueFormatString: "#,##0 Transactions",
+        //             dataPoints: <?php echo json_encode($penjualanData); ?>
+        //         }]
+        //     });
+        //     chart.render();
+        // }
         window.onload = function() {
+            // Fungsi untuk mendapatkan tanggal dengan format DD MMM YYYY
+            function getDateFormatted(date) {
+                var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                return date.getDate() + ' ' + months[date.getMonth()];
+            }
+
+            // Generate dummy data
+            var dummyData = [];
+            var startDate = new Date(); 
+            startDate.setDate(startDate.getDate()-7);
+            for (var i = 0; i < 7; i++) {
+                var currentDate = new Date(startDate);
+                currentDate.setDate(startDate.getDate() + i); // Tambahkan i hari
+                var formattedDate = getDateFormatted(currentDate);
+                var transactions = Math.round(Math.random() * 10 + 5); // Angka acak antara 5 dan 15
+                dummyData.push({
+                    x: currentDate,
+                    y: transactions,
+                    label: formattedDate
+                });
+            }
+
             var chart = new CanvasJS.Chart("canvasjsChartContainer", {
                 animationEnabled: true,
                 theme: "light2",
@@ -48,12 +97,12 @@
                     includeZero: true
                 },
                 data: [{
-                    type: "line", // Mengganti tipe grafik menjadi "line"
+                    type: "line",
                     color: "#6599FF",
                     xValueType: "dateTime",
                     xValueFormatString: "DD MMM",
                     yValueFormatString: "#,##0 Transactions",
-                    dataPoints: <?php echo json_encode($penjualanData); ?>
+                    dataPoints: dummyData
                 }]
             });
             chart.render();
@@ -65,20 +114,18 @@
         // Data untuk Bar Chart
         const barChartData = {
             labels: produkLabels,
+            // datasets: [{
+            //     backgroundColor: ["red", "green", "blue", "orange", "brown"],
+            //     data: produkData,
+            // }],
+
             datasets: [{
-                backgroundColor: ["red", "green", "blue", "orange", "brown"],
-                data: produkData,
-            }],
+                label: 'Dataset',
+                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+                data: [59, 78, 170, 57] // Sesuaikan dengan perbandingan yang diinginkan
+            }]
         };
 
-        // Data untuk Pie Chart
-        // const pieChartData = {
-        //     labels: produkLabels,
-        //     datasets: [{
-        //         backgroundColor: ["red", "green", "blue", "orange", "brown"],
-        //         data: produkData,
-        //     }],
-        // };
 
         // Opsi untuk Bar Chart
         const barChartOptions = {
@@ -98,32 +145,14 @@
             },
         };
 
-        // Opsi untuk Pie Chart
-        const pieChartOptions = {
-            legend: {
-                display: true
-            },
-            title: {
-                display: true,
-                text: "Pie Chart Example",
-            },
-        };
-
-
         // Inisialisasi Bar Chart
         const barChartCtx = document.getElementById("barChart").getContext("2d");
+        console.log(barChartCtx);
         new Chart(barChartCtx, {
             type: "bar",
             data: barChartData,
             options: barChartOptions,
         });
-        // Inisialisasi Pie Chart
-        // const pieChartCtx = document.getElementById("pieChart").getContext("2d");
-        // new Chart(pieChartCtx, {
-        //     type: "pie",
-        //     data: pieChartData,
-        //     options: pieChartOptions,
-        // });
     </script>
 
     <script>
@@ -161,7 +190,7 @@
                 XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
 
                 // Buat nama file dengan format "laporan_penjualan_tahun_bulan.xlsx"
-                var namaFile = 'laporan_penjualan_' + bulanSekarang.toLowerCase() +'_'+ tahunSekarang + '.xlsx';
+                var namaFile = 'laporan_penjualan_' + bulanSekarang.toLowerCase() + '_' + tahunSekarang + '.xlsx';
 
                 // Simpan workbook sebagai file Excel dengan nama file yang telah dibuat
                 XLSX.writeFile(wb, namaFile);

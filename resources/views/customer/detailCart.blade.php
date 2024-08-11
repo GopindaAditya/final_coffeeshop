@@ -121,7 +121,7 @@
                                     '\n';
                             });
                             
-                            window.location = "{{ route('qrcode') }}?data=" + encodeURIComponent(qrCodeText);
+                            window.location = "{{ route('qrcode') }}?data=" + encodeURIComponent(qrCodeText) + "&snapToken=" + response.snapToken;
 
                 },
                 error: function(xhr, status, error) {

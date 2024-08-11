@@ -9,6 +9,7 @@
                 Transfer Proof Here</small>
             <div class="d-flex justify-content-center">
                 <button class="btn mt-1" style ="background-color:#7B551C;color:white;" onclick="create()">Upload</button>
+                <button class="btn mt-1" style ="background-color:#7B551C;color:white;" id="pay-button">Bayar</button>
             </div>
         </div>
     </div>
@@ -50,11 +51,11 @@
         }
 
         function uploadBukti() {
-            var urlParams = new URLSearchParams(window.location.search);            
-            var dataParam = urlParams.get('data'); 
+            var urlParams = new URLSearchParams(window.location.search);
+            var dataParam = urlParams.get('data');
             var idTransaksi = null;
 
-            if (dataParam) {                
+            if (dataParam) {
                 var idTransaksiStart = dataParam.indexOf('id transaksi: ');
                 if (idTransaksiStart !== -1) {
                     idTransaksiStart += 'id transaksi: '.length;
@@ -65,7 +66,7 @@
                 }
             }
 
-            console.log(idTransaksi);            
+            console.log(idTransaksi);
             var foto = $("#foto")[0].files[0];
             var formData = new FormData();
             formData.append('id_transaksi', idTransaksi);
@@ -100,4 +101,33 @@
             });
         }
     </script>
+
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MITRANS_CLIENT_KEY') }}"></script>
+    <script type="text/javascript">
+        document.getElementById('pay-button').onclick = function() {
+            var snapToken = '{{ request()->input('snapToken') }}';
+
+            // SnapToken acquired from previous step
+            snap.pay(snapToken, {
+                // Optional
+                onSuccess: function(result) {
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);                    
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var idTransaksi = urlParams.get('data').split('id transaksi: ')[1].split('\n')[0].trim();                    
+                    // Redirect ke halaman updateTransactionStatus dengan id_transaksi
+                    window.location.href = "{{ url('customer/updateTransactionStatus') }}/" + idTransaksi;
+                },
+                // Optional
+                onPending: function(result) {
+                    /* You may add your own js here, this is just example */
+                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                },
+                // Optional
+                onError: function(result) {
+                    /* You may add your own js here, this is just example */
+                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                }
+            });
+        };
+    </script>    
 @endsection
