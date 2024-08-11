@@ -20,7 +20,7 @@ class AuhtController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        
+        // dd($cradentials);
         if (Auth::attempt($cradentials)) {
             return redirect()->route('customer.menu');
         } elseif (Auth::guard('owners')->attempt($cradentials)) {            
